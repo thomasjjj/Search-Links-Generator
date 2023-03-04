@@ -1,5 +1,5 @@
 # Search-Links-Generator
-A python tool where you enter search terms and it generates a html file with hyperlinks that turn green when clicked. This can optimise the initial recon and collection.
+A python tool where you enter search terms and it generates a html file with Telegram hyperlinks that turn green when clicked. This can optimise the initial recon and collection.
 
 
 This tool takes a list of search terms in a window - one search term per line - and generates a HTML file that opens in the browser.
