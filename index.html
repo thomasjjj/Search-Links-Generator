@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Engine Links Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        textarea {
+            margin: 20px 0;
+            width: 300px;
+            height: 200px;
+        }
+        #links {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .term {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter list of search terms, one on each row</h1>
+    <textarea id="terms"></textarea>
+    <button onclick="generateLinks()">Search</button>
+    <div id="links"></div>
+
+    <script>
+        const facebook_base_url = "https://www.facebook.com/search/top/?q=";
+        const twitter_base_url = "https://twitter.com/search?q=";
+        const vk_base_url = "https://vk.com/search?c%5Bq%5D=";
+        const google_base_url = "https://www.google.com/search?q=";
+        const yandex_base_url = "https://yandex.com/search/?text=";
+
+        function generateLinks() {
+            const searchTerms = document.getElementById('terms').value.split('\n');
+            const linksDiv = document.getElementById('links');
+            linksDiv.innerHTML = '';
+
+            searchTerms.forEach(term => {
+                const encodedTerm = encodeURIComponent(term.trim());
+
+                const facebook_link = facebook_base_url + encodedTerm;
+                const twitter_link = twitter_base_url + encodedTerm;
+                const vk_link = vk_base_url + encodedTerm;
+                const google_link = google_base_url + encodedTerm;
+                const yandex_link = yandex_base_url + encodedTerm;
+
+                const p = document.createElement('p');
+                p.className = 'term';
+                p.innerHTML = `Search term: <strong>${term}</strong><br>
+                    <a href="${facebook_link}" target="_blank">Facebook</a> |
+                    <a href="${twitter_link}" target="_blank">Twitter</a> |
+                    <a href="${vk_link}" target="_blank">VK</a> |
+                    <a href="${google_link}" target="_blank">Google</a> |
+                    <a href="${yandex_link}" target="_blank">Yandex</a>`;
+                linksDiv.appendChild(p);
+            });
+        }
+    </script>
+</body>
+</html>
